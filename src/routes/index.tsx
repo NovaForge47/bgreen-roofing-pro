@@ -31,7 +31,6 @@ const SERVICES = [
 ];
 
 const STATS = [
-  { value: 150, suffix: "+", label: "Google Κριτικές" },
   { value: 5, suffix: "★", label: "Μέση Βαθμολογία" },
   { value: 500, suffix: "+", label: "Ολοκληρωμένα Έργα" },
   { value: 15, suffix: "+", label: "Χρόνια Εμπειρίας" },
