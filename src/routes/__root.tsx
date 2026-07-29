@@ -77,12 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "B Green — Επαγγελματικές Υπηρεσίες Στέγης στο Πόρτο Ράφτη" },
-      { name: "description", content: "B Green: Επισκευή στέγης, αδιαβροχοποίηση, κεραμίδια και μόνωση στην Αττική. 150+ κριτικές 5★ στο Google. Δωρεάν εκτίμηση." },
+      { title: "B Green — Επαγγελματικές Υπηρεσίες Στέγης & Μεταλλικά Προκάτ στο Πόρτο Ράφτη" },
+      { name: "description", content: "B Green: Επαγγελματικές υπηρεσίες στέγης, σιδηροκατασκευή, μεταλλικά προκάτ, ανακαινίσεις και μονώσεις στο Πόρτο Ράφτη και την Αττική. Ποιότητα που διαρκεί, 15+ χρόνια εμπειρίας." },
       { name: "author", content: "B Green" },
-      { property: "og:title", content: "B Green — Επαγγελματικές Υπηρεσίες Στέγης" },
-      { property: "og:description", content: "Επισκευή στέγης, αδιαβροχοποίηση και μόνωση στο Πόρτο Ράφτη. 150+ κριτικές 5★." },
+      { property: "og:title", content: "B Green — Επαγγελματικές Υπηρεσίες Στέγης & Μεταλλικά Προκάτ" },
+      { property: "og:description", content: "Επαγγελματικές υπηρεσίες στέγης, σιδηροκατασκευή και μεταλλικά προκάτ στο Πόρτο Ράφτη. Ποιότητα που διαρκεί, 15+ χρόνια εμπειρίας." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "B Green" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -101,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="el">
       <head>
         <HeadContent />
       </head>

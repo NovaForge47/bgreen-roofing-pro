@@ -9,6 +9,76 @@ import p3 from "@/assets/bgreen-p3.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
+  head: () => ({
+    meta: [
+      { property: "og:url", content: "https://bgreen.gr/" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bgreen.gr/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              "@id": "https://bgreen.gr/#localbusiness",
+              "name": "B Green Intelligent Construction",
+              "image": "https://bgreen.gr/favicon.ico",
+              "url": "https://bgreen.gr/",
+              "telephone": "+30 698 190 2330",
+              "email": "bgreen.constructionss@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Αγίου Γεωργίου 25",
+                "addressLocality": "Πόρτο Ράφτη",
+                "postalCode": "190 03",
+                "addressCountry": "GR",
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "37.8833",
+                "longitude": "24.0167",
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  "opens": "07:00",
+                  "closes": "16:00",
+                },
+              ],
+              "priceRange": "€€",
+              "areaServed": "Πόρτο Ράφτη, Αττική",
+              "sameAs": [],
+            },
+            {
+              "@type": "Service",
+              "serviceType": "Στέγη και Σιδηροκατασκευή",
+              "provider": { "@id": "https://bgreen.gr/#localbusiness" },
+              "description": "Επαγγελματικές υπηρεσίες στέγης, σιδηροκατασκευής και μεταλλικών προκάτ.",
+              "areaServed": "Πόρτο Ράφτη, Αττική",
+            },
+            {
+              "@type": "Service",
+              "serviceType": "Ανακαίνιση και Μονώσεις",
+              "provider": { "@id": "https://bgreen.gr/#localbusiness" },
+              "description": "Ολικές και μερικές ανακαινίσεις, υγρομόνωση, θερμομόνωση και θερμοπρόσοψη.",
+              "areaServed": "Πόρτο Ράφτη, Αττική",
+            },
+            {
+              "@type": "WebSite",
+              "name": "B Green Intelligent Construction",
+              "url": "https://bgreen.gr/",
+              "inLanguage": "el",
+            },
+          ],
+        }),
+      },
+    ],
+  }),
 });
 
 const NAV = [
@@ -49,9 +119,9 @@ const REVIEWS = [
 ];
 
 const GALLERY = [
-  { src: p1.url, title: "Έργο #1" },
-  { src: p2.url, title: "Έργο #2" },
-  { src: p3.url, title: "Έργο #3" },
+  { src: p1.url, title: "Σύγχρονη μεταλλική κατοικία με σχεδιασμό B Green" },
+  { src: p2.url, title: "Μοντέρνο σπίτι με επένδυση ξύλου και φωτισμό B Green" },
+  { src: p3.url, title: "Αρχιτεκτονικό έργο B Green με πράσινη κάθετη όψη" },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
