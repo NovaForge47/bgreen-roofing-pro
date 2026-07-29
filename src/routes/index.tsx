@@ -119,9 +119,9 @@ const REVIEWS = [
 ];
 
 const GALLERY = [
-  { src: p1.url, title: "Έργο #1" },
-  { src: p2.url, title: "Έργο #2" },
-  { src: p3.url, title: "Έργο #3" },
+  { src: p1.url, title: "Σύγχρονη μεταλλική κατοικία με σχεδιασμό B Green" },
+  { src: p2.url, title: "Μοντέρνο σπίτι με επένδυση ξύλου και φωτισμό B Green" },
+  { src: p3.url, title: "Αρχιτεκτονικό έργο B Green με πράσινη κάθετη όψη" },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
