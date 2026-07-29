@@ -146,17 +146,17 @@ function Home() {
       {/* HERO */}
       <section id="hero" className="relative overflow-hidden bg-[color:var(--ink)] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-100"
           style={{ backgroundImage: `url(${heroImg.url})` }}
         />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(600px circle at 20% 20%, rgba(27,77,46,0.45), transparent 60%), radial-gradient(500px circle at 80% 60%, rgba(10,10,10,0.85), rgba(10,10,10,0.6) 60%)",
+              "radial-gradient(600px circle at 20% 20%, rgba(27,77,46,0.25), transparent 60%), radial-gradient(500px circle at 80% 60%, rgba(10,10,10,0.65), rgba(10,10,10,0.35) 60%)",
           }}
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[color:var(--ink)]/70 via-[color:var(--ink)]/50 to-[color:var(--ink)]" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[color:var(--ink)]/50 via-[color:var(--ink)]/30 to-[color:var(--ink)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
