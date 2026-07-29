@@ -111,8 +111,15 @@ function Home() {
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-[color:var(--brand)] bg-[color:var(--ink)]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-          <a href="#hero" className="text-xl font-black tracking-tight text-white">
-            B <span className="text-[color:var(--brand-light)]">GREEN</span>
+          <a href="#hero" className="flex items-center gap-3">
+            <img
+              src={logoImg.url}
+              alt="B Green Intelligent Construction"
+              className="h-12 w-auto object-contain sm:h-14"
+            />
+            <span className="text-xl font-black tracking-tight text-white">
+              B <span className="text-[color:var(--brand-light)]">GREEN</span>
+            </span>
           </a>
           <nav className="hidden items-center gap-8 md:flex">
             {NAV.map((n) => (
