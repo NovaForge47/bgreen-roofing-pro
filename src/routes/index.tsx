@@ -99,9 +99,13 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
 
 function Home() {
   useReveal();
-}
-// placeholder removed below
-function HomeReal() {
+
+  const scrollToBooking = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("booking");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
 
   return (
     <div className="min-h-screen bg-[color:var(--surface)] text-[color:var(--ink)]">
