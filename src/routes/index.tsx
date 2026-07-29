@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/bgreen-hero.asset.json";
 import logoImg from "@/assets/bgreen-logo.png.asset.json";
