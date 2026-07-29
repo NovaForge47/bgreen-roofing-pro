@@ -31,7 +31,6 @@ const SERVICES = [
 ];
 
 const STATS = [
-  { value: 150, suffix: "+", label: "Google Κριτικές" },
   { value: 5, suffix: "★", label: "Μέση Βαθμολογία" },
   { value: 500, suffix: "+", label: "Ολοκληρωμένα Έργα" },
   { value: 15, suffix: "+", label: "Χρόνια Εμπειρίας" },
@@ -207,7 +206,7 @@ function Home() {
             <div className="grid gap-4 sm:grid-cols-1" data-reveal>
               {[
                 { t: "Εγγύηση Εργασίας", d: "Γραπτή εγγύηση σε κάθε έργο." },
-                { t: "Εκτίμηση", d: "Επί τόπου, χωρίς καμία χρέωση." },
+                { t: "Εκτίμηση", d: "Επί τόπου." },
                 { t: "Άμεση Ανταπόκριση", d: "Απάντηση εντός 2 ωρών." },
               ].map((f) => (
                 <div
