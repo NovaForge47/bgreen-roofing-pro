@@ -99,25 +99,9 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
 
 function Home() {
   useReveal();
-  const [submitted, setSubmitted] = useState(false);
-  const [bookingOpen, setBookingOpen] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = bookingOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [bookingOpen]);
-
-  const openBooking = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setBookingOpen(true);
-  };
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+}
+// placeholder removed below
+function HomeReal() {
 
   return (
     <div className="min-h-screen bg-[color:var(--surface)] text-[color:var(--ink)]">
