@@ -184,9 +184,10 @@ function Home() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#contact"
+                onClick={openBooking}
                 className="btn-glow inline-flex w-full items-center justify-center rounded-md bg-[color:var(--brand)] px-6 py-3 text-sm font-semibold text-white sm:w-auto"
               >
-                Ζητήστε Προσφορά →
+                Κλείστε Ραντεβού →
               </a>
               <a
                 href="#services"
