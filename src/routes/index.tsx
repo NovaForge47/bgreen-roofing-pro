@@ -366,7 +366,7 @@ function Home() {
             <div data-reveal className="space-y-5 text-white/85">
               {[
                 { icon: "📍", text: "Αγίου Γεωργίου 25, Πόρτο Ράφτη 190 03" },
-                { icon: "📞", text: "698 190 2330", href: "tel:+306981902330" },
+                { icon: "📞", text: "+30 698 190 2330", href: "tel:+306981902330" },
                 { icon: "✉️", text: "bgreen.constructionss@gmail.com", href: "mailto:bgreen.constructionss@gmail.com" },
                 { icon: "🕐", text: "Δευτέρα – Σάββατο: 07:00 – 16:00" },
               ].map((c) => (
@@ -465,7 +465,7 @@ function Home() {
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
                   <a href="tel:+306981902330" className="hover:text-[color:var(--brand-light)]">
-                    698 190 2330
+                    +30 698 190 2330
                   </a>
                 </li>
                 <li>
