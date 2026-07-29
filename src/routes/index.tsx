@@ -230,7 +230,7 @@ function Home() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
             <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
-              Η Στέγη και το Σπίτι σας στα<br />
+              Μεταλλικα Προκατ και το Σπίτι σας στα<br />
               <span className="text-[color:var(--brand-light)]">Καλύτερα Χέρια</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
