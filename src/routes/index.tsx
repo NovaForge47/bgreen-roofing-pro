@@ -467,42 +467,6 @@ function Home() {
         </div>
       </footer>
 
-      {/* BOOKING MODAL — Setmore iframe (keeps visitor on site) */}
-      {bookingOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-2 sm:p-6"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Κράτηση Ραντεβού"
-          onClick={() => setBookingOpen(false)}
-        >
-          <div
-            className="relative flex h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[color:var(--border)] bg-[color:var(--ink)] px-5 py-3 text-white">
-              <div className="text-sm font-semibold tracking-wide">
-                Κλείστε Ραντεβού — B Green
-              </div>
-              <button
-                type="button"
-                onClick={() => setBookingOpen(false)}
-                aria-label="Κλείσιμο"
-                className="grid h-9 w-9 place-items-center rounded-md text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                ✕
-              </button>
-            </div>
-            <iframe
-              src="https://b-green.setmore.com/"
-              title="B Green — Κράτηση Ραντεβού"
-              className="h-full w-full flex-1 border-0"
-              sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
