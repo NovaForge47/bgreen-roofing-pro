@@ -147,9 +147,10 @@ function Home() {
           </nav>
           <a
             href="#contact"
+            onClick={openBooking}
             className="btn-glow inline-flex items-center rounded-md bg-[color:var(--brand)] px-4 py-2 text-sm font-semibold text-white"
           >
-            Ζητήστε Προσφορά
+            Κλείστε Ραντεβού
           </a>
         </div>
       </header>
