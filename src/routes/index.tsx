@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/bgreen-hero.asset.json";
 import logoImg from "@/assets/bgreen-logo.png.asset.json";
@@ -99,25 +99,13 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
 
 function Home() {
   useReveal();
-  const [submitted, setSubmitted] = useState(false);
-  const [bookingOpen, setBookingOpen] = useState(false);
 
-  useEffect(() => {
-    document.body.style.overflow = bookingOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [bookingOpen]);
-
-  const openBooking = (e: React.MouseEvent) => {
+  const scrollToBooking = (e: React.MouseEvent) => {
     e.preventDefault();
-    setBookingOpen(true);
+    const el = document.getElementById("booking");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
 
   return (
     <div className="min-h-screen bg-[color:var(--surface)] text-[color:var(--ink)]">
@@ -146,8 +134,8 @@ function Home() {
             ))}
           </nav>
           <a
-            href="#contact"
-            onClick={openBooking}
+            href="#booking"
+            onClick={scrollToBooking}
             className="btn-glow inline-flex items-center rounded-md bg-[color:var(--brand)] px-4 py-2 text-sm font-semibold text-white"
           >
             Κλείστε Ραντεβού
@@ -183,8 +171,8 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="#contact"
-                onClick={openBooking}
+                href="#booking"
+                onClick={scrollToBooking}
                 className="btn-glow inline-flex w-full items-center justify-center rounded-md bg-[color:var(--brand)] px-6 py-3 text-sm font-semibold text-white sm:w-auto"
               >
                 Κλείστε Ραντεβού →
@@ -406,57 +394,21 @@ function Home() {
               ))}
             </div>
 
-            <form
-              data-reveal
-              onSubmit={onSubmit}
-              className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur sm:p-8"
-            >
-              {submitted ? (
-                <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
-                  <div className="grid h-16 w-16 place-items-center rounded-full bg-[color:var(--brand)] text-3xl">
-                    ✅
-                  </div>
-                  <p className="mt-6 text-lg font-semibold">Το αίτημά σας στάλθηκε!</p>
-                  <p className="mt-2 text-sm text-white/70">
-                    Θα επικοινωνήσουμε μαζί σας σύντομα.
-                  </p>
+            <div data-reveal id="booking" className="overflow-hidden rounded-xl border border-white/10 bg-white shadow-2xl">
+              <div className="flex items-center justify-between border-b border-[color:var(--border)] bg-[color:var(--ink)] px-5 py-3 text-white">
+                <div className="text-sm font-semibold tracking-wide">
+                  Κλείστε Ραντεβού — B Green
                 </div>
-              ) : (
-                <div className="space-y-4">
-                  <Field label="Ονοματεπώνυμο" name="name" required />
-                  <Field label="Τηλέφωνο" name="phone" type="tel" required />
-                  <div>
-                    <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
-                      Υπηρεσία
-                    </label>
-                    <select
-                      required
-                      className="w-full rounded-md border border-white/15 bg-[color:var(--ink)] px-3.5 py-3 text-sm text-white outline-none transition focus:border-[color:var(--brand-light)]"
-                    >
-                      {SERVICES.map((s) => (
-                        <option key={s.title}>{s.title}</option>
-                      ))}
-                      <option>Άλλο</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
-                      Μήνυμα (προαιρετικό)
-                    </label>
-                    <textarea
-                      rows={4}
-                      className="w-full rounded-md border border-white/15 bg-[color:var(--ink)] px-3.5 py-3 text-sm text-white outline-none transition focus:border-[color:var(--brand-light)]"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-glow w-full rounded-md bg-[color:var(--brand)] px-6 py-3.5 text-sm font-semibold text-white"
-                  >
-                    Αποστολή Αιτήματος →
-                  </button>
-                </div>
-              )}
-            </form>
+                <span className="text-xs text-white/60">Powered by Setmore</span>
+              </div>
+              <iframe
+                src="https://b-green.setmore.com/"
+                title="B Green — Κράτηση Ραντεβού"
+                className="block h-[720px] w-full border-0"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
           </div>
         </div>
       </section>
@@ -515,68 +467,6 @@ function Home() {
         </div>
       </footer>
 
-      {/* BOOKING MODAL — Setmore iframe (keeps visitor on site) */}
-      {bookingOpen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-2 sm:p-6"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Κράτηση Ραντεβού"
-          onClick={() => setBookingOpen(false)}
-        >
-          <div
-            className="relative flex h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-[color:var(--border)] bg-[color:var(--ink)] px-5 py-3 text-white">
-              <div className="text-sm font-semibold tracking-wide">
-                Κλείστε Ραντεβού — B Green
-              </div>
-              <button
-                type="button"
-                onClick={() => setBookingOpen(false)}
-                aria-label="Κλείσιμο"
-                className="grid h-9 w-9 place-items-center rounded-md text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                ✕
-              </button>
-            </div>
-            <iframe
-              src="https://b-green.setmore.com/"
-              title="B Green — Κράτηση Ραντεβού"
-              className="h-full w-full flex-1 border-0"
-              sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
-        {label}
-      </label>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        className="w-full rounded-md border border-white/15 bg-[color:var(--ink)] px-3.5 py-3 text-sm text-white outline-none transition focus:border-[color:var(--brand-light)]"
-      />
     </div>
   );
 }
