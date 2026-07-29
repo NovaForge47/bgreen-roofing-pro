@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useReveal } from "@/hooks/use-reveal";
+import heroImg from "@/assets/bgreen-hero.asset.json";
+import p1 from "@/assets/bgreen-p1.asset.json";
+import p2 from "@/assets/bgreen-p2.asset.json";
+import p3 from "@/assets/bgreen-p3.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -14,39 +18,40 @@ const NAV = [
 ];
 
 const SERVICES = [
-  { icon: "🏠", title: "Επισκευή Στέγης", desc: "Αποκατάσταση φθορών και διαρροών με εγγύηση αποτελέσματος." },
-  { icon: "💧", title: "Αδιαβροχοποίηση", desc: "Πλήρης προστασία από υγρασία και νερό για μόνιμο αποτέλεσμα." },
-  { icon: "🧱", title: "Τοποθέτηση Κεραμιδιών", desc: "Εγκατάσταση και αντικατάσταση κεραμιδιών κάθε τύπου." },
-  { icon: "🌡️", title: "Θερμομόνωση", desc: "Μόνωση στέγης για εξοικονόμηση ενέργειας και άνεση." },
-  { icon: "🔧", title: "Συντήρηση Στέγης", desc: "Περιοδικός έλεγχος και συντήρηση για μακροζωία." },
-  { icon: "⚡", title: "Έκτακτες Επεμβάσεις", desc: "Άμεση ανταπόκριση σε επείγουσες επισκευές στέγης." },
+  { icon: "⚡", title: "Ηλεκτρολογικά", desc: "Πλήρεις ηλεκτρολογικές εγκαταστάσεις και αποκαταστάσεις." },
+  { icon: "🛠️", title: "Ανακαίνιση", desc: "Ολικές και μερικές ανακαινίσεις χώρων με σύγχρονη αισθητική." },
+  { icon: "🚿", title: "Υδραυλικά", desc: "Εγκαταστάσεις και επισκευές υδραυλικών με εγγύηση." },
+  { icon: "🎨", title: "Βάψιμο", desc: "Επαγγελματικά χρωματισμοί εσωτερικών και εξωτερικών χώρων." },
+  { icon: "🧱", title: "Πλακάκια", desc: "Τοποθέτηση πλακιδίων δαπέδου και τοίχου κάθε τύπου." },
+  { icon: "🏗️", title: "Σιδηροκατασκευή – Μεταλλικά Προκάτ", desc: "Κατασκευή μεταλλικών προκάτ κτιρίων και σιδηροκατασκευές." },
+  { icon: "💧", title: "Υγρομόνωση", desc: "Πλήρης προστασία από υγρασία και νερό." },
+  { icon: "🌡️", title: "Θερμομόνωση", desc: "Μόνωση για εξοικονόμηση ενέργειας και άνεση." },
+  { icon: "🧰", title: "Γυψοσανίδες", desc: "Κατασκευές γυψοσανίδας για διαχωριστικά και ψευδοροφές." },
+  { icon: "🏠", title: "Θερμοπρόσοψη", desc: "Εξωτερική θερμομόνωση κτιρίων υψηλής απόδοσης." },
 ];
 
 const STATS = [
   { value: 150, suffix: "+", label: "Google Κριτικές" },
   { value: 5, suffix: "★", label: "Μέση Βαθμολογία" },
   { value: 500, suffix: "+", label: "Ολοκληρωμένα Έργα" },
-  { value: 10, suffix: "+", label: "Χρόνια Εμπειρίας" },
+  { value: 15, suffix: "+", label: "Χρόνια Εμπειρίας" },
 ];
 
 const WHY = [
-  { icon: "🏆", title: "150+ Κριτικές 5 Αστέρων", desc: "Η εμπιστοσύνη των πελατών μας είναι η καλύτερη απόδειξη της δουλειάς μας." },
   { icon: "⚡", title: "Άμεση Ανταπόκριση", desc: "Απαντάμε σε κάθε αίτημα εντός 2 ωρών." },
   { icon: "✅", title: "Εγγύηση Εργασίας", desc: "Κάθε εργασία συνοδεύεται από γραπτή εγγύηση αποτελέσματος." },
-  { icon: "💰", title: "Δωρεάν Εκτίμηση", desc: "Ερχόμαστε στο χώρο σας χωρίς χρέωση." },
-];
-
-const STEPS = [
-  { n: "01", icon: "📞", title: "Επικοινωνία", desc: "Καλέστε μας ή στείλτε μήνυμα. Απαντάμε άμεσα." },
-  { n: "02", icon: "🔍", title: "Δωρεάν Εκτίμηση", desc: "Ερχόμαστε στο χώρο σας και αξιολογούμε." },
-  { n: "03", icon: "📋", title: "Προσφορά", desc: "Σας δίνουμε αναλυτική προσφορά με σταθερή τιμή." },
-  { n: "04", icon: "✅", title: "Εκτέλεση & Παράδοση", desc: "Εκτελούμε επαγγελματικά και παραδίδουμε με εγγύηση." },
 ];
 
 const REVIEWS = [
   { text: "Άψογη συνεργασία!", name: "Αλεξάνδρος Ζύρουκου", when: "4 μήνες πριν" },
   { text: "Επαγγελματική δουλειά, άμεση εξυπηρέτηση. Συστήνω ανεπιφύλακτα!", name: "Alex Methasani", when: "3 μήνες πριν" },
   { text: "Εξαιρετική ποιότητα εργασίας και σεβασμός στον χώρο μας.", name: "Perlat Lamaj", when: "4 μήνες πριν" },
+];
+
+const GALLERY = [
+  { src: p1.url, title: "Έργο #1" },
+  { src: p2.url, title: "Έργο #2" },
+  { src: p3.url, title: "Έργο #3" },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -132,30 +137,35 @@ function Home() {
       {/* HERO */}
       <section id="hero" className="relative overflow-hidden bg-[color:var(--ink)] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div
-          className="pointer-events-none absolute inset-0 opacity-40"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url(${heroImg.url})` }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(600px circle at 20% 20%, rgba(27,77,46,0.35), transparent 60%), radial-gradient(500px circle at 80% 60%, rgba(27,77,46,0.25), transparent 60%)",
+              "radial-gradient(600px circle at 20% 20%, rgba(27,77,46,0.45), transparent 60%), radial-gradient(500px circle at 80% 60%, rgba(10,10,10,0.85), rgba(10,10,10,0.6) 60%)",
           }}
         />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[color:var(--ink)]/70 via-[color:var(--ink)]/50 to-[color:var(--ink)]" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center" data-reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--brand)]/50 bg-[color:var(--brand)]/15 px-4 py-1.5 text-xs font-semibold text-[color:var(--brand-light)]">
-              ⭐ 5/5 · 150+ Κριτικές στο Google
-            </span>
-            <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
-              Η Στέγη σας στα<br />
+            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-6xl">
+              Η Στέγη και το Σπίτι σας στα<br />
               <span className="text-[color:var(--brand-light)]">Καλύτερα Χέρια</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
-              Επαγγελματικές υπηρεσίες στέγης και αδιαβροχοποίησης στην Αττική. Ποιότητα που διαρκεί, τιμές που σας σέβονται.
+            <p className="mx-auto mt-6 max-w-2xl text-base text-white/80 sm:text-lg">
+              Επαγγελματικές υπηρεσίες στέγης και Μεταλλικών Προκάτ. Ποιότητα που διαρκεί, τιμές που σας σέβονται.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-base font-semibold text-[color:var(--brand-light)] sm:text-lg">
+              Το σπίτι των ονείρων σας σε 6 μήνες από την ημέρα της υπογραφής!
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href="#contact"
                 className="btn-glow inline-flex w-full items-center justify-center rounded-md bg-[color:var(--brand)] px-6 py-3 text-sm font-semibold text-white sm:w-auto"
               >
-                Ζητήστε Δωρεάν Προσφορά →
+                Ζητήστε Προσφορά →
               </a>
               <a
                 href="#services"
@@ -166,12 +176,11 @@ function Home() {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-6 border-t border-white/10 pt-10 md:grid-cols-4" data-reveal>
+          <div className="mt-16 grid grid-cols-3 gap-6 border-t border-white/10 pt-10" data-reveal>
             {[
-              { n: "150+", l: "Κριτικές" },
               { n: "5★", l: "Google" },
               { n: "500+", l: "Έργα" },
-              { n: "10+", l: "Χρόνια" },
+              { n: "15+", l: "Χρόνια" },
             ].map((s) => (
               <div key={s.l} className="text-center">
                 <div className="text-3xl font-black text-[color:var(--brand-light)] sm:text-4xl">{s.n}</div>
@@ -192,13 +201,13 @@ function Home() {
                 Εμπιστοσύνη που Χτίζεται<br />Χρόνο με τον Χρόνο
               </h2>
               <p className="mt-6 text-base leading-relaxed text-[color:var(--ink-soft)]">
-                Η B Green είναι επαγγελματική εταιρεία στέγης με έδρα το Πόρτο Ράφτη. Αναλαμβάνουμε κάθε είδους εργασία στέγης με εγγύηση ποιότητας, επαγγελματισμό και σεβασμό στον χώρο σας.
+                Η B Green είναι επαγγελματική εταιρεία στέγης και σιδεροκατασκευής προκάτ με έδρα το Πόρτο Ράφτη. Αναλαμβάνουμε κάθε είδους εργασία με εγγύηση ποιότητας, επαγγελματισμό και σεβασμό στον χώρο σας.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-1" data-reveal>
               {[
                 { t: "Εγγύηση Εργασίας", d: "Γραπτή εγγύηση σε κάθε έργο." },
-                { t: "Δωρεάν Εκτίμηση", d: "Επί τόπου, χωρίς καμία χρέωση." },
+                { t: "Εκτίμηση", d: "Επί τόπου, χωρίς καμία χρέωση." },
                 { t: "Άμεση Ανταπόκριση", d: "Απάντηση εντός 2 ωρών." },
               ].map((f) => (
                 <div
@@ -224,7 +233,7 @@ function Home() {
             <SectionLabel>Υπηρεσίες</SectionLabel>
             <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Τι Αναλαμβάνουμε</h2>
             <p className="mt-4 text-[color:var(--ink-soft)]">
-              Ολοκληρωμένες υπηρεσίες στέγης από έμπειρους επαγγελματίες.
+              Ολοκληρωμένες υπηρεσίες από έμπειρους επαγγελματίες.
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -287,31 +296,6 @@ function Home() {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl" data-reveal>
-            <SectionLabel>Πώς δουλεύουμε</SectionLabel>
-            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">4 Απλά Βήματα</h2>
-          </div>
-          <div className="relative mt-14 grid gap-8 md:grid-cols-4">
-            <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-0.5 bg-gradient-to-r from-[color:var(--brand)]/20 via-[color:var(--brand)] to-[color:var(--brand)]/20 md:block" />
-            {STEPS.map((s) => (
-              <div key={s.n} data-reveal className="relative">
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-2 border-[color:var(--brand)] bg-white text-2xl shadow-sm">
-                  {s.icon}
-                </div>
-                <div className="mt-4 text-center">
-                  <div className="text-xs font-bold tracking-widest text-[color:var(--brand)]">{s.n}</div>
-                  <div className="mt-1 text-lg font-bold">{s.title}</div>
-                  <p className="mt-2 text-sm text-[color:var(--ink-soft)]">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* GALLERY */}
       <section id="gallery" className="bg-[color:var(--surface-alt)] py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -319,24 +303,22 @@ function Home() {
             <SectionLabel>Τα έργα μας</SectionLabel>
             <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Μερικά από τα Έργα μας</h2>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {Array.from({ length: 6 }).map((_, i) => (
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {GALLERY.map((g, i) => (
               <div
                 key={i}
                 data-reveal
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-[color:var(--brand-dark)] to-[color:var(--brand)]"
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-[color:var(--ink)] shadow-lg"
               >
-                <div
-                  className="absolute inset-0 opacity-30 transition duration-500 group-hover:scale-110"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 12px, transparent 12px 24px)",
-                  }}
+                <img
+                  src={g.src}
+                  alt={g.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 flex items-end p-5 opacity-0 transition group-hover:opacity-100">
-                  <div className="text-sm font-semibold text-white">Έργο #{i + 1}</div>
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5">
+                  <div className="text-sm font-semibold text-white">{g.title}</div>
                 </div>
-                <div className="absolute inset-0 bg-[color:var(--brand)]/0 transition group-hover:bg-[color:var(--brand)]/30" />
               </div>
             ))}
           </div>
@@ -349,9 +331,6 @@ function Home() {
           <div className="text-center" data-reveal>
             <SectionLabel>Κριτικές Google</SectionLabel>
             <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Τι Λένε οι Πελάτες μας</h2>
-            <div className="mt-6 text-lg font-semibold text-[color:var(--ink-soft)]">
-              <span className="text-[color:var(--brand)]">★★★★★</span> 5.0 / 5.0 · 150+ κριτικές στο Google
-            </div>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {REVIEWS.map((r) => (
@@ -380,11 +359,8 @@ function Home() {
           <div className="max-w-2xl" data-reveal>
             <SectionLabel>Επικοινωνία</SectionLabel>
             <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
-              Ζητήστε Δωρεάν Εκτίμηση Σήμερα
+              Ζητήστε Εκτίμηση Σήμερα
             </h2>
-            <p className="mt-3 text-[color:var(--brand-light)]">
-              Ερχόμαστε στο χώρο σας — χωρίς χρέωση
-            </p>
           </div>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -392,13 +368,13 @@ function Home() {
               {[
                 { icon: "📍", text: "Αγίου Γεωργίου 25, Πόρτο Ράφτη 190 03" },
                 { icon: "📞", text: "698 190 2330", href: "tel:+306981902330" },
+                { icon: "✉️", text: "bgreen.constructionss@gmail.com", href: "mailto:bgreen.constructionss@gmail.com" },
                 { icon: "🕐", text: "Δευτέρα – Σάββατο: 07:00 – 16:00" },
-                { icon: "🔴", text: "Κυριακή: Κλειστά" },
               ].map((c) => (
                 <div key={c.text} className="flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-5">
                   <span className="text-xl">{c.icon}</span>
                   {c.href ? (
-                    <a href={c.href} className="text-base font-medium hover:text-[color:var(--brand-light)]">
+                    <a href={c.href} className="break-all text-base font-medium hover:text-[color:var(--brand-light)]">
                       {c.text}
                     </a>
                   ) : (
@@ -435,11 +411,9 @@ function Home() {
                       required
                       className="w-full rounded-md border border-white/15 bg-[color:var(--ink)] px-3.5 py-3 text-sm text-white outline-none transition focus:border-[color:var(--brand-light)]"
                     >
-                      <option>Επισκευή Στέγης</option>
-                      <option>Αδιαβροχοποίηση</option>
-                      <option>Κεραμίδια</option>
-                      <option>Μόνωση</option>
-                      <option>Συντήρηση</option>
+                      {SERVICES.map((s) => (
+                        <option key={s.title}>{s.title}</option>
+                      ))}
                       <option>Άλλο</option>
                     </select>
                   </div>
@@ -478,11 +452,11 @@ function Home() {
                 Υπηρεσίες
               </div>
               <ul className="mt-4 space-y-2 text-sm">
-                <li>Επισκευή Στέγης</li>
-                <li>Αδιαβροχοποίηση</li>
-                <li>Κεραμίδια</li>
-                <li>Μόνωση</li>
-                <li>Συντήρηση</li>
+                <li>Ανακαίνιση</li>
+                <li>Ηλεκτρολογικά & Υδραυλικά</li>
+                <li>Σιδηροκατασκευή – Μεταλλικά Προκάτ</li>
+                <li>Υγρομόνωση & Θερμομόνωση</li>
+                <li>Θερμοπρόσοψη</li>
               </ul>
             </div>
             <div>
@@ -495,6 +469,11 @@ function Home() {
                     698 190 2330
                   </a>
                 </li>
+                <li>
+                  <a href="mailto:bgreen.constructionss@gmail.com" className="break-all hover:text-[color:var(--brand-light)]">
+                    bgreen.constructionss@gmail.com
+                  </a>
+                </li>
                 <li>Αγίου Γεωργίου 25, Πόρτο Ράφτη</li>
                 <li>Δευτέρα–Σάββατο: 07:00–16:00</li>
               </ul>
@@ -505,7 +484,6 @@ function Home() {
               </div>
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="text-[color:var(--brand-light)]">★★★★★ 5/5 Google</li>
-                <li>150+ Κριτικές</li>
               </ul>
             </div>
           </div>
