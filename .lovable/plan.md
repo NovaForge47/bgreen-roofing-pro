@@ -1,23 +1,21 @@
-Το Google Search Console δείχνει «Crawled - currently not indexed» και «Temporary processing error». Εντόπισα ένα πραγματικό τεχνικό πρόβλημα και ένα φυσιολογικό στάδιο για καινούρια site.
+## Το sitemap είναι πλέον ONLINE και σωστό
 
-Τι βρήκα:
+Έλεγξα το `https://bgreen.gr/sitemap.xml` αυτή τη στιγμή:
 
-- **Sitemap URL mismatch**: Το `robots.txt` λέει `Sitemap: https://bgreen.gr/sitemap.xml`, αλλά το sitemap δημιουργείται στο `/sitemap/xml` (με slash). Το `https://bgreen.gr/sitemap.xml` επιστρέφει **404**. Αυτό εξηγεί το «Temporary processing error» στο GSC.
-- **Canonical tag υπάρχει** στο live HTML (`<link rel="canonical" href="https://bgreen.gr/"/>`), οπότε το «User-declared canonical: N/A» είναι πιθανότατα από παλιότερο crawl ή από το HTTP redirect.
-- **Stale deployment**: Το live site ακόμα δείχνει το παλιό hero text «Η Στέγη και το Σπίτι σας...» αντί για «Μεταλλικα Προκατ...». Οι τελευταίες αλλαγές δεν έχουν δημοσιευτεί.
+- **HTTP 200 OK** (όχι πια 404)
+- **Content-Type: application/xml**
+- Επιστρέφει έγκυρο XML με το `https://bgreen.gr/` μέσα
 
-Πλάνο δράσης:
+Το μήνυμα που βλέπεις στο Google Search Console («HTTP Error: 404») είναι από **παλιότερη προσπάθεια** της Google να διαβάσει το sitemap πριν δημοσιευτεί το fix. Το GSC δεν ξαναδοκιμάζει αυτόματα αμέσως — χρειάζεται να του πεις εσύ να ξαναδιαβάσει.
 
-1. **Διόρθωση sitemap route** — Μετονομασία/αλλαγή του `src/routes/sitemap.xml.ts` ώστε να σερβίρει στο σωστό URL `/sitemap.xml` (όχι `/sitemap/xml`). Ενημέρωση του `createFileRoute` αν χρειάζεται.
-2. **Επαλήθευση robots.txt** — Επιβεβαίωση ότι δείχνει στο σωστό `https://bgreen.gr/sitemap.xml`.
-3. **Re-publish** — Δημοσίευση του site για να ανέβουν οι διορθώσεις (canonical, sitemap, νέο hero text).
-4. **Οδηγίες χρήστη για GSC** — Μετά τη δημοσίευση, να κάνει:
-   - Delete + re-submit το sitemap στο Google Search Console.
-   - Request indexing ξανά για το `https://bgreen.gr/`.
-   - Υπομονή: «Crawled - currently not indexed» είναι φυσιολογικό για καινούρια site και μπορεί να πάρει από μερικές μέρες έως 2-4 εβδομάδες.
+## Τι να κάνεις στο Google Search Console (χωρίς αλλαγές στον κώδικα)
 
-Τεχνικές λεπτομέρειες:
+1. Άνοιξε **Sitemaps** στο GSC.
+2. Στη λίστα με τα υποβεβλημένα sitemaps, δίπλα στο `sitemap.xml` πάτα το μενού (⋮) και κάνε **Remove sitemap**.
+3. Πάτα **Add a new sitemap**, γράψε `sitemap.xml` και **Submit**.
+4. Μετά από 1–2 λεπτά το status θα γίνει **Success** και θα δεις 1 discovered URL.
+5. Πήγαινε στο **URL Inspection**, βάλε `https://bgreen.gr/`, πάτα **Test live URL** και μετά **Request indexing**.
 
-- Το route tree (`src/routeTree.gen.ts`) δείχνει `/sitemap/xml` αντί για `/sitemap.xml`. Θα φτιάξω το file-based routing για το dot.
-- Θα τρέξω build πριν τη δημοσίευση για να επιβεβαιώσω ότι δεν υπάρχουν σφάλματα.
-- Δεν απαιτείται αλλαγή στο canonical — ήδη υπάρχει σωστά.
+## Καμία αλλαγή στον κώδικα δεν χρειάζεται
+
+Το sitemap route, το `robots.txt`, το canonical, και το JSON-LD δουλεύουν σωστά στο live site. Αν μετά το re-submit εξακολουθεί να δείχνει 404, ενημέρωσέ με να ελέγξω ξανά.
