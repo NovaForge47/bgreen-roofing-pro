@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import heroImg from "@/assets/bgreen-hero.asset.json";
+import logoImg from "@/assets/bgreen-logo.png.asset.json";
 import p1 from "@/assets/bgreen-p1.asset.json";
 import p2 from "@/assets/bgreen-p2.asset.json";
 import p3 from "@/assets/bgreen-p3.asset.json";
