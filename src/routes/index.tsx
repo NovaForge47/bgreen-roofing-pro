@@ -1,11 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
-import heroImg from "@/assets/bgreen-hero.asset.json";
-import logoImg from "@/assets/bgreen-logo.png.asset.json";
-import p1 from "@/assets/bgreen-p1.asset.json";
-import p2 from "@/assets/bgreen-p2.asset.json";
-import p3 from "@/assets/bgreen-p3.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -119,9 +114,9 @@ const REVIEWS = [
 ];
 
 const GALLERY = [
-  { src: p1.url, title: "Σύγχρονη μεταλλική κατοικία με σχεδιασμό B Green" },
-  { src: p2.url, title: "Μοντέρνο σπίτι με επένδυση ξύλου και φωτισμό B Green" },
-  { src: p3.url, title: "Αρχιτεκτονικό έργο B Green με πράσινη κάθετη όψη" },
+  { src: "/images/bgreen-p1.png", title: "Σύγχρονη μεταλλική κατοικία με σχεδιασμό B Green" },
+  { src: "/images/bgreen-p2.png", title: "Μοντέρνο σπίτι με επένδυση ξύλου και φωτισμό B Green" },
+  { src: "/images/bgreen-p3.png", title: "Αρχιτεκτονικό έργο B Green με πράσινη κάθετη όψη" },
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -184,7 +179,7 @@ function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <a href="#hero" className="flex items-center gap-3">
             <img
-              src={logoImg.url}
+              src="/images/bgreen-logo.png"
               alt="B Green Intelligent Construction"
               className="h-12 w-auto object-contain sm:h-14"
             />
@@ -217,7 +212,7 @@ function Home() {
       <section id="hero" className="relative overflow-hidden bg-[color:var(--ink)] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-100"
-          style={{ backgroundImage: `url(${heroImg.url})` }}
+          style={{ backgroundImage: "url(/images/bgreen-hero.png)" }}
         />
         <div
           className="pointer-events-none absolute inset-0"
